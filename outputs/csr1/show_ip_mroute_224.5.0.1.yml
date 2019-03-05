@@ -1,0 +1,16 @@
+-   GROUP: ''
+    INCOMING_IFACE: 'Null'
+    OUTGOING_IFACE:
+    - GigabitEthernet0/2
+    - GigabitEthernet0/1
+    OUTGOING_IFACE_COUNT: ''
+    PUBLISHER: ''
+    UPTIME: ''
+-   GROUP: ''
+    INCOMING_IFACE: Loopback1
+    OUTGOING_IFACE:
+    - GigabitEthernet0/1
+    - GigabitEthernet0/2
+    OUTGOING_IFACE_COUNT: ''
+    PUBLISHER: ''
+    UPTIME: ''

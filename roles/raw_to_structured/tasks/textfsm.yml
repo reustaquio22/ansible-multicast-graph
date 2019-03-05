@@ -1,0 +1,22 @@
+- name: "PARSE RAW DATA USING TEXTFSM"
+  set_fact:
+    "{{ command_var | lower }}": "{{ command[1] | parse_cli_textfsm(role_path ~ '/fsm_templates/' ~ vendor ~ '_' ~ ansible_network_os ~ '_' ~ command_with_underscores | regex_replace('_vrf.+', '') | regex_replace('_\\d+\\.\\d+\\.\\d+\\.\\d+', '') ~ '.template') | lower_all }}"
+  loop: "{{ commands | zip(command_results['stdout']) | list }}"
+  loop_control:
+    loop_var: "command"
+  delegate_to: "localhost"
+
+- name: "ENSURE OUTPUT DIRECTORY EXISTS"
+  file:
+    path: "{{ output_dir }}/textfsm/{{ inventory_hostname }}"
+    state: "directory"
+  delegate_to: "localhost"
+
+- name: "COPY PARSED DATA TO A FILE"
+  copy:
+    content: "{{ lookup('vars', command_var) | to_nice_yaml }}"
+    dest: "/{{ output_dir }}/textfsm/{{ inventory_hostname }}/{{ command_with_underscores }}.yml"
+  loop: "{{ commands }}"
+  loop_control:
+    loop_var: "command"
+  delegate_to: "localhost"

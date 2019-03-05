@@ -8,16 +8,17 @@ digraph network {
   /* hosts */
 {% for host in play_hosts %}
 {%   if host in report %}
-{%     if report[host].mroutes|has_mroutes %}
-    "{{ host }}" [
+{%     if report.get(host).get('mroutes') %}
+    {{ host }} [
         shape=box;
-{%        if report[host].rp|has_rp %}
-{%          if report[host].rp|get_rp_address|is_rp(report[host].interfaces) %}
+{%       if report.get(host).get('rp') %}
+{%         if report.get(host).rp|get_rp_address|is_rp(report[host].interfaces) %}
         style=filled;
         fillcolor=grey80;
 {%          endif %}
         label="{{ host }}\nRP: {{ report[host].rp|get_rp_address }}"
-{%        endif %}
+{%       endif %}
+
     ];
 {%     endif %}
 {%   endif %}
@@ -27,19 +28,21 @@ digraph network {
 {% for label, edge in edges.iteritems() %}
     {{ edge.left_host }} -> {{ edge.right_host }} [label="{{ label }}"; fontcolor="{{ link_colour(edge.publisher) }}"; color="{{ link_colour(edge.publisher) }}"]
 {% endfor %}
-
   /* IGMP snoops */
 {% for host in play_hosts %}
-{%   if host in report and report[host].snooping|has_snooping %}
-{%     for entry in report[host].snooping %}
-{%       for port in entry.ports %}
-{%         if port != "Cpu" %}
-    {{ host }} -> {{ report|get_interface_neighbour(host, port) }} [color="blue"; fontcolor="blue"; label="{{ port }}";];
-{%         endif %}
+{%   if report[host].get('snooping') %}
+{%     if host in report and report[host].snooping|has_snooping %}
+{%       for entry in report[host].snooping %}
+{%         for port in entry.ports %}
+{%           if port != "Cpu" %}
+    {{ host }} -> {{ report|get_interface_neighbor(host, port) }} [color="blue"; fontcolor="blue"; label="{{ port }}";];
+{%           endif %}
+{%         endfor %}
 {%       endfor %}
-{%     endfor %}
+{%     endif %}
 {%   endif %}
 {% endfor %}
+
 
   /* Publishers */
 {% for host in play_hosts %}

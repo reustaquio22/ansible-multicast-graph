@@ -1,0 +1,38 @@
+---
+- name: "VALIDATE MULTICAST GROUP IS A VALID MULTICAST ADDRESS"
+  fail:
+    msg: "Valid multicast group must be passed to playbook with -e/--extra-vars, e.g. `-e mcast_group=224.0.0.1`"
+  when:
+   - "mcast_group is not defined or not mcast_group | ipaddr('224.0.0.0/4') or mcast_group not in mcast_group | ipaddr"
+  delegate_to: "localhost"
+  run_once: true
+
+- name: "COLLECT RAW COMMAND DATA FROM DEVICE"
+  include_role:
+    name: "command_runner"
+
+- name: "GENERATE STRUCTURED DATA USING TEXTFSM"
+  include_role:
+    name: "raw_to_structured"
+    tasks_from: "textfsm"
+
+- name: "COMPILE REPORT"
+  template:
+    src: "report.j2"
+    dest: "{{ output_dir }}/{{ mcast_group }}.yml"
+  delegate_to: "localhost"
+
+- name: "GENERATE GRAPH"
+  template:
+    src: "graph.j2"
+    dest: "{{ output_dir }}/{{ mcast_group }}.dot"
+  vars:
+    report: "{{ lookup('file', output_dir ~ '/' ~ mcast_group ~ '.yml') | from_yaml }}"
+    edges: "{{ report | get_mroute_edges(mcast_group, play_hosts) }}"
+  run_once: true
+  delegate_to: "localhost"
+
+- name: "RENDER GRAPH"
+  command: "dot -Tpng {{ output_dir }}/{{ mcast_group }}.dot -o {{ output_dir }}/{{ mcast_group }}.png"
+  run_once: true
+  delegate_to: "localhost"

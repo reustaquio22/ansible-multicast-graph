@@ -1,0 +1,13 @@
+Value GROUP (\d+\.\d+\.\d+\.\d+)
+Value INTERFACE (\S+)
+Value UPTIME (\d+:\d+:\d+)
+Value EXPIRES (\d+:\d+:\d+)
+Value LAST_REPORTER (\d+\.\d+\.\d+\.\d+)
+
+Start
+  ^Group\sAddress.*\sGroup\sAccounted -> IGMP
+
+IGMP
+  ^${GROUP}\s+${INTERFACE}\s+${UPTIME}\s+${EXPIRES}\s+${LAST_REPORTER} -> Record
+
+EOF

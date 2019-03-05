@@ -1,0 +1,2 @@
+command_with_underscores: "{% if command is string %}{{ command | regex_replace(' ', '_') }}{% else %}{{ command[0] | regex_replace(' ','_') }}{% endif %}"
+command_var: "{{ command_with_underscores | regex_replace('[\\.-]', '') }}_parsed"

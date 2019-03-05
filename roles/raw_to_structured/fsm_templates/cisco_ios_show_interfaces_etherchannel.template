@@ -1,0 +1,6 @@
+Value ETHERCHANNEL (\S+\s\S+)
+
+Start
+  ^Etherchannel\s${ETHERCHANNEL}\s+on\s+this\s+port -> Record
+
+EOF

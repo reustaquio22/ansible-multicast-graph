@@ -1,0 +1,119 @@
+-   ADDRESS: 0c01.3a9b.4900
+    BANDWIDTH: 1000000 Kbit
+    BIA: 0c01.3a9b.4900
+    DELAY: 10 usec
+    DESCRIPTION: ''
+    DUPLEX: Unknown
+    ENCAPSULATION: ARPA
+    HARDWARE_TYPE: iGbE
+    INPUT_RATE: '0'
+    INTERFACE: GigabitEthernet0/0
+    IP_ADDRESS: 172.16.132.252/24
+    LINK_STATUS: up
+    MTU: '1500'
+    OUTPUT_RATE: '0'
+    PROTOCOL_STATUS: 'up '
+    QUEUE_STRATEGY: fifo
+    SPEED: Unknown, link type is auto
+-   ADDRESS: 0c01.3a9b.4901
+    BANDWIDTH: 1000000 Kbit
+    BIA: 0c01.3a9b.4901
+    DELAY: 10 usec
+    DESCRIPTION: ''
+    DUPLEX: Unknown
+    ENCAPSULATION: ARPA
+    HARDWARE_TYPE: iGbE
+    INPUT_RATE: '0'
+    INTERFACE: GigabitEthernet0/1
+    IP_ADDRESS: 10.1.1.2/30
+    LINK_STATUS: up
+    MTU: '1500'
+    OUTPUT_RATE: '0'
+    PROTOCOL_STATUS: 'up '
+    QUEUE_STRATEGY: fifo
+    SPEED: Unknown, link type is auto
+-   ADDRESS: 0c01.3a9b.4902
+    BANDWIDTH: 1000000 Kbit
+    BIA: 0c01.3a9b.4902
+    DELAY: 10 usec
+    DESCRIPTION: ''
+    DUPLEX: Unknown
+    ENCAPSULATION: ARPA
+    HARDWARE_TYPE: iGbE
+    INPUT_RATE: '0'
+    INTERFACE: GigabitEthernet0/2
+    IP_ADDRESS: 10.1.1.9/30
+    LINK_STATUS: up
+    MTU: '1500'
+    OUTPUT_RATE: '0'
+    PROTOCOL_STATUS: 'up '
+    QUEUE_STRATEGY: fifo
+    SPEED: Unknown, link type is auto
+-   ADDRESS: 0c01.3a9b.4903
+    BANDWIDTH: 1000000 Kbit
+    BIA: 0c01.3a9b.4903
+    DELAY: 10 usec
+    DESCRIPTION: ''
+    DUPLEX: Auto Duplex
+    ENCAPSULATION: ARPA
+    HARDWARE_TYPE: iGbE
+    INPUT_RATE: '0'
+    INTERFACE: GigabitEthernet0/3
+    IP_ADDRESS: ''
+    LINK_STATUS: administratively
+    MTU: '1500'
+    OUTPUT_RATE: '0'
+    PROTOCOL_STATUS: 'down '
+    QUEUE_STRATEGY: fifo
+    SPEED: Auto Speed, link type is auto
+-   ADDRESS: ''
+    BANDWIDTH: 8000000 Kbit
+    BIA: ''
+    DELAY: 5000 usec
+    DESCRIPTION: ''
+    DUPLEX: ''
+    ENCAPSULATION: LOOPBACK
+    HARDWARE_TYPE: Loopback
+    INPUT_RATE: '0'
+    INTERFACE: Loopback1
+    IP_ADDRESS: 2.2.2.1/32
+    LINK_STATUS: up
+    MTU: '1514'
+    OUTPUT_RATE: '0'
+    PROTOCOL_STATUS: 'up '
+    QUEUE_STRATEGY: fifo
+    SPEED: ''
+-   ADDRESS: ''
+    BANDWIDTH: 8000000 Kbit
+    BIA: ''
+    DELAY: 5000 usec
+    DESCRIPTION: ''
+    DUPLEX: ''
+    ENCAPSULATION: LOOPBACK
+    HARDWARE_TYPE: Loopback
+    INPUT_RATE: '0'
+    INTERFACE: Loopback2
+    IP_ADDRESS: 2.2.2.2/32
+    LINK_STATUS: up
+    MTU: '1514'
+    OUTPUT_RATE: '0'
+    PROTOCOL_STATUS: 'up '
+    QUEUE_STRATEGY: fifo
+    SPEED: ''
+-   ADDRESS: ''
+    BANDWIDTH: 100 Kbit
+    BIA: ''
+    DELAY: 50000 usec
+    DESCRIPTION: Pim Register Tunnel (Encap) for RP 1.1.1.10
+    DUPLEX: ''
+    ENCAPSULATION: TUNNEL
+    HARDWARE_TYPE: Tunnel
+    INPUT_RATE: '0'
+    INTERFACE: Tunnel0
+    IP_ADDRESS: ''
+    LINK_STATUS: up
+    MTU: '17912'
+    OUTPUT_RATE: '0'
+    PROTOCOL_STATUS: 'up '
+    QUEUE_STRATEGY: fifo
+    SPEED: ''

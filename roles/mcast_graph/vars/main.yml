@@ -1,0 +1,24 @@
+---
+mcast_command_dict:
+  ios:
+    interfaces: "show interfaces"
+    mroutes: "show ip mroute {{ mcast_group }}{% if vrf is defined and vrf %} vrf {{ vrf }}{% endif %}"
+    neighbors: "show lldp neighbors"
+#    rp: "show ip pim rp {{ mcast_group }}{% if vrf is defined and vrf %} vrf {{ vrf }} {% endif %}"
+
+  ios_xr:
+    interfaces: "show interfaces"
+    mroutes: "show ip mroute {{ mcast_group }}{% if vrf is defined and vrf %} vrf {{ vrf }}{% endif %}"
+    neighbors: "show lldp neighbors"
+    rp: "show ip pim rp {{ mcast_group }}{% if vrf is defined and vrf %} vrf {{ vrf }} {% endif %}"
+
+  iosl2:
+    lags: "show port-channel summary"
+    interfaces: "show interfaces"
+    mroutes: "show ip mroute {{ mcast_group }}{% if vrf is defined and vrf %} vrf {{ vrf }}{% endif %}"
+    neighbors: "show lldp neighbors"
+    rp: "show ip pim rp {{ mcast_group }}{% if vrf is defined and vrf %} vrf {{ vrf }} {% endif %}"
+    snooping: "show ip igmp snooping groups {{ mcast_group }}"
+
+mcast_commands: "{{ mcast_command_dict.get(ansible_network_os) }}"  
+commands: "{{ mcast_commands.values() | list }}"

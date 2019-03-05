@@ -1,0 +1,10 @@
+Value GROUP (\d+\.\d+\.\d+\.\d+)
+Value RP (\d+\.\d+\.\d+\.\d+)
+Value UPTIME (\d+:\d+:\d+)
+Value EXPIRES (\d+:\d+:\d+|never)
+
+Start
+  ^Group:\s+${GROUP},\s+RP:\s+${RP},\s+uptime\s+${UPTIME},\s+expires\s+${EXPIRES} -> Record
+  ^Group:\s+${GROUP},\s+RP:\s+${RP}
+
+EOF

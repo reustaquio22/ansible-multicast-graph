@@ -3,8 +3,12 @@ _meta:
   compiled_at: "{#% now 'local', '%Y-%m-%d %H:%M:%S %z' %#}"
 {% for host in play_hosts %}
 {{ host }}:
-{% for input in ['rp', 'mroutes', 'snooping', 'neighbours', 'interfaces', 'lags'] %}
-  {{ input }}:
-{{ lookup('file', results + '/' + host + '/' + input + '-' + mcast_group + '.yaml')|indent_block(4) }}
+{% for command in commands %}
+{% for mcast, mcast_command in mcast_command_dict[ansible_network_os].items() %}
+{% if mcast_command == command %}
+  {{ mcast }}:
+{{ lookup('file', '/' +  output_dir + '/' + 'textfsm' + '/' + host + '/' + command | replace(' ', '_') + '.yml')|indent_block(4) }}
+{% endif %}
+{% endfor %}
 {% endfor %}
 {% endfor %}

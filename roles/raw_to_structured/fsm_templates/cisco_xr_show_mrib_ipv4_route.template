@@ -1,0 +1,14 @@
+Value Filldown PUBLISHER (\*|\d+\.\d+\.\d+\.\d+) 
+Value Filldown GROUP (\d+\.\d+\.\d+\.\d+) 
+Value Required UPTIME (\S+) 
+Value INCOMING_IFACE ([a-zA-Z0-9/-]+) 
+Value OUTGOING_IFACE_COUNT (\d+) 
+Value List OUTGOING_IFACE (\S+) 
+
+Start
+  ^\(${PUBLISHER},${GROUP}
+  ^Up:\s+${UPTIME}
+  ^Outgoing Interface List
+  ^${OUTGOING_IFACE} -> Record
+
+EOF

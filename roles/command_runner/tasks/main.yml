@@ -1,0 +1,21 @@
+---
+- name: "ISSUE COMMAND ON NETWORK DEVICE"
+  include_tasks: "{{ ansible_network_os }}.yml"
+  when: "connection_mode != 'offline'"
+  tags: "show_command"
+
+- name: "PERFORM NECESSARY TASKS WHEN RUNNING IN 'OFFLINE' MODE"
+  block:
+    - name: "FETCH RAW COMMAND DATA FROM FILE"
+      set_fact:
+        stdout: "{{ stdout | default ([]) + [lookup('file', 'outputs/raw/' ~ inventory_hostname ~ '/' ~ command | regex_replace(' ', '_') ~ '.txt')] }}"
+      loop: "{{ commands }}"
+      loop_control:
+        loop_var: "command"
+      delegate_to: "localhost"
+    - name: "CREATE PROPER VARIABLE WHEN USING RAW DATA FROM FILE"
+      set_fact:
+        command_results:
+          stdout: "{{ stdout }}"
+      delegate_to: "localhost"
+  when: "connection_mode == 'offline'"

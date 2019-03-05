@@ -1,0 +1,5 @@
+---
+- name: "ISSUE COMMAND ON IOS DEVICE"
+  ios_command:
+    commands: "{{ commands }}"
+  register: "command_results"

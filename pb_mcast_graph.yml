@@ -1,0 +1,27 @@
+---
+- name: "mcast_graph"
+  hosts: ios
+  gather_facts: no
+  vars_files:
+    - "{{vault_file|default('./secrets/vault.yml')}}"
+    - "{{inventory_dir}}/vars/ntc.yml"
+  vars:
+    mcast_group: "UNSET"
+    mcast_net: "224.0.0.0/4"
+    results: "{{inventory_dir}}/outputs"
+    host_results: "{{ results }}/{{ inventory_hostname }}"
+    task_list:
+      - "tasks/{{os}}/{{task_path|basename}}"
+      - "{{task_path}}"
+
+  tasks:
+    - name: Create output directories
+      local_action: file path={{ results }} state=directory
+      run_once: true
+
+    - name: Create host output directories
+      local_action: file path={{ host_results }} state=directory
+
+    - name: "EXECUTE MCAST_GRAPH"
+      include_role:
+        name: mcast_graph
